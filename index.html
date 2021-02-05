@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documents</title> 
+</head>
+<body>
+    <script>
+        const axios = require("axios");
+
+
+
+console.log('aveeena')
+  const getAxiosSoap = ()=>{
+    const xmls=`<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sal="http://192.168.2.29/suite/webservices/SalidasTransportador/">
+                  <soapenv:Header/>
+                  <soapenv:Body>
+                    <sal:ObtenerSalidas>
+                        <cliente>860.066.942-7</cliente>
+                    </sal:ObtenerSalidas>
+                  </soapenv:Body>
+              </soapenv:Envelope>`;
+    const headers = {
+            'Authorization':'Basic TkhPUlRVQUA5OTpOMTIzNDUq',
+            'Content-Type':'application/xml',
+            'Access-Control-Allow-Origin' : '*', 
+        //  'Content-Length':508, 
+        //  'Host':'186.31.137.87:8080',
+          }
+
+axios.post('http://186.31.137.87:8080/amm/suite/webservices/salidastransportador.php?wsdl',
+           xmls,
+           {headers:headers,              
+            //mode: 'no-cors'
+            //crossorigin:true
+           }).then(res=>{
+             console.log(res);
+           }).catch(err=>{console.log(err)});
+  }
+
+  getAxiosSoap()
+    </script>
+</body>
+</html>
